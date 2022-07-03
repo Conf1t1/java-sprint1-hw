@@ -61,9 +61,16 @@ public class StepTracker {
 
     void seriesOfGoal(int month){
         int daysWhenGoal = 0;
-        for (int i = 0; i < monthToData[month].day.length; i++) {// Длина
+        int series = 0;
+        for (int i = 0; i < monthToData[month].day.length; i++) {
             if (monthToData[month].day[i] >= stepsGoal) {
-                daysWhenGoal = daysWhenGoal + 1;
+                series = series + 1;
+                if (daysWhenGoal < series){
+                    daysWhenGoal = series;
+                }
+            }
+           else if (monthToData[month].day[i] < stepsGoal) {
+                series = 0;
             }
         }
         System.out.println("Лучшая серия за " + monthToData[month].monthName + " - "+ daysWhenGoal + " дней.");
